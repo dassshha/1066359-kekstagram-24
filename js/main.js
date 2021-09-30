@@ -1,6 +1,6 @@
 function getRandomNumber(min, max) {
   if (min < 0 || max < 0 ){
-    return undefined;
+    return 0;
   }
   min = Math.ceil(min);
   max = Math.floor(max);
