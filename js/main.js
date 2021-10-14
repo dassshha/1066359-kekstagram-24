@@ -1,13 +1,20 @@
-const MESSAGE = 'Всё отлично!';
 const COMMENTS_MIN_COUNT = 1;
 const COMMENTS_MAX_COUNT = 5;
-const PHOTOS_LENGTH = 25;
+const PHOTO_INDEX_MAX_COUNT = 25;
 const NAMES = [
   'Иван',
   'Мария',
   'Ольга',
   'Евгений',
   'Николай',
+];
+const MESSAGES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 const DESCRIPTIONS = [
   'Описание 1',
@@ -18,11 +25,8 @@ const DESCRIPTIONS = [
 ];
 
 const getRandomNumber = (min, max) => {
-  if (min < 0 || max < 0 ){
-    return 0;
-  }
-  min = Math.ceil(min);
-  max = Math.floor(max);
+  min = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  max = Math.floor(Math.max(Math.abs(min),Math.abs(max)));
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 const checkStrFitsMaxLength = (str, maxLength) => str.length <= maxLength;
@@ -30,10 +34,11 @@ const checkStrFitsMaxLength = (str, maxLength) => str.length <= maxLength;
 const createComment = (commentIndex) => {
   const avatarIndex = getRandomNumber(1, 6);
   const nameIndex = getRandomNumber(0, NAMES.length - 1);
+  const messageIndex = getRandomNumber(0, MESSAGES.length - 1);
   return{
     'id': commentIndex,
     'avatar': `img/avatar-${avatarIndex}.svg`,
-    'message': MESSAGE,
+    'message': MESSAGES[messageIndex],
     'name': NAMES[nameIndex],
   };
 };
@@ -49,7 +54,7 @@ const createPhoto = (photoIndex) => {
     'comments': Array.from({length: commentsCount}, (value, commentIndex) => createComment(commentIndex + 1)),
   };
 };
-const createPhotos = () => Array.from({length: PHOTOS_LENGTH}, (value, photoIndex) => createPhoto(photoIndex + 1));
+const createPhotos = () => Array.from({length: PHOTO_INDEX_MAX_COUNT}, (value, photoIndex) => createPhoto(photoIndex + 1));
 
 getRandomNumber(2, 5);
 checkStrFitsMaxLength('hello',140);
