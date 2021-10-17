@@ -1,5 +1,3 @@
-'use strict';
-
 const COMMENTS_MIN_COUNT = 1;
 const COMMENTS_MAX_COUNT = 5;
 const PHOTO_INDEX_MAX_COUNT = 25;
@@ -36,15 +34,15 @@ const getRandomNumberExcept = (min, max, canceledNum) => {
   const randomNum = getRandomNumber(min, max);
   return randomNum === canceledNum ? getRandomNumberExcept(min, max, canceledNum) : randomNum;
 };
-const createMessage = () => {
+const createMessage = (messages) => {
   const messagesCount = getRandomNumber(1, 2);
   if (messagesCount === 1){
-    const messageIndex = getRandomNumber(0, MESSAGES.length - 1);
-    return MESSAGES[messageIndex];
+    const messageIndex = getRandomNumber(0, messages.length - 1);
+    return messages[messageIndex];
   }
-  const messageIndex1 = getRandomNumber(0, MESSAGES.length - 1);
-  const messageIndex2 = getRandomNumberExcept(0, MESSAGES.length - 1, messageIndex1);
-  return [MESSAGES[messageIndex1], MESSAGES[messageIndex2]].join(' ');
+  const messageIndex1 = getRandomNumber(0, messages.length - 1);
+  const messageIndex2 = getRandomNumberExcept(0, messages.length - 1, messageIndex1);
+  return [messages[messageIndex1], messages[messageIndex2]].join(' ');
 
 };
 const createComment = (commentIndex) => {
@@ -53,7 +51,7 @@ const createComment = (commentIndex) => {
   return{
     'id': commentIndex,
     'avatar': `img/avatar-${avatarIndex}.svg`,
-    'message': createMessage(),
+    'message': createMessage(MESSAGES),
     'name': NAMES[nameIndex],
   };
 };
