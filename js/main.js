@@ -1,6 +1,7 @@
-import {createPics} from './miniature.js';
+import {createMiniatures} from './miniature.js';
 import {createPhotos} from './data.js';
+const miniaturesContainer = document.querySelector('.pictures');
 
-createPics(createPhotos());
+createMiniatures(createPhotos(), miniaturesContainer);
 
 
