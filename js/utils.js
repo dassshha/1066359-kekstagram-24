@@ -8,5 +8,8 @@ const getRandomNumberExcept = (min, max, canceledNum) => {
   const randomNum = getRandomNumber(min, max);
   return randomNum === canceledNum ? getRandomNumberExcept(min, max, canceledNum) : randomNum;
 };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+const findMiniatureData = (miniatures, src) => miniatures.find((item) => src.endsWith(item.url));
 
-export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength};
+
+export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData};

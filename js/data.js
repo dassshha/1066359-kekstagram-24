@@ -35,5 +35,6 @@ const createPhoto = (photoIndex) => {
   };
 };
 const createPhotos = () => Array.from({length: PHOTO_INDEX_MAX_COUNT}, (value, photoIndex) => createPhoto(photoIndex + 1));
+const photos = createPhotos();
 
-export {createPhotos};
+export {photos};

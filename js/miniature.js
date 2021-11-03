@@ -1,3 +1,5 @@
+import {photos} from './data.js';
+
 const miniatureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const createMiniature = (photo, miniaturesFragment) => {
@@ -19,5 +21,7 @@ const createMiniatures = (photos, container) => {
   container.appendChild(miniaturesFragment);
 };
 
-export {createMiniatures};
+const miniaturesContainer = document.querySelector('.pictures');
+createMiniatures(photos, miniaturesContainer);
+
 
