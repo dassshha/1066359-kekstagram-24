@@ -13,10 +13,10 @@ const createMiniature = (photo, miniaturesFragment) => {
   miniaturesFragment.append(miniature);
 };
 
-const createMiniatures = (photos, container) => {
+const createMiniatures = (pictures, container) => {
   const miniaturesFragment = document.createDocumentFragment();
-  photos.forEach((photo) => {
-    createMiniature(photo, miniaturesFragment);
+  pictures.forEach((picture) => {
+    createMiniature(picture, miniaturesFragment);
   });
   container.appendChild(miniaturesFragment);
 };
