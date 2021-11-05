@@ -12,7 +12,6 @@ const makeVisualizer = (popup) => {
     popup.classList.remove('hidden');
     body.classList.add('modal-open');
     document.addEventListener('keydown', onEscKeydown);
-    console.log(popup);
   };
   function hidePopup () {
     popup.classList.add('hidden');
