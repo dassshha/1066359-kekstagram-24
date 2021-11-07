@@ -5,14 +5,14 @@ import {photoEditForm} from './form.js';
 const MAX_HASHTAGS_COUNT = 5;
 const hashtagField = photoEditForm.querySelector('.text__hashtags');
 
-const checkHashtagsFitsMaxCount = (hashtags) => hashtags.length <= MAX_HASHTAGS_COUNT;
+const checkIfHashtagsFitMaxCount = (hashtags) => hashtags.length <= MAX_HASHTAGS_COUNT;
 
 const checkTwoSameHashtags = (hashtags) => {
   const hashtagsSet = new Set(hashtags);
   return hashtagsSet.size === hashtags.length;
 };
 
-const checkCorrectHashtags = (hashtags) => {
+const checkIfHashtagSymbolsValid = (hashtags) => {
   const re = /^#[A-Za-zА-яа-яЁё0-9]{1,19}$/;
   for (let i = 0;i < hashtags.length; i++) {
     if (!re.test(hashtags[i])) {
@@ -25,13 +25,13 @@ const checkCorrectHashtags = (hashtags) => {
 hashtagField.addEventListener('input', ()=> {
   const hashtags = hashtagField.value.split(' ');
 
-  if (!checkHashtagsFitsMaxCount(hashtags)) {
+  if (!checkIfHashtagsFitMaxCount(hashtags)) {
     hashtagField.setCustomValidity(ERRORS.MAX_COUNT_ERROR);
     hashtagField.classList.add('warning');
   } else if (!checkTwoSameHashtags(hashtags)) {
     hashtagField.setCustomValidity(ERRORS.UNIQUE_ERROR);
     hashtagField.classList.add('warning');
-  } else if (!checkCorrectHashtags(hashtags)) {
+  } else if (!checkIfHashtagSymbolsValid(hashtags)) {
     hashtagField.setCustomValidity(ERRORS.CORRECT_TITLE_ERROR);
     hashtagField.classList.add('warning');
   } else {
