@@ -1,5 +1,5 @@
 import {findMiniatureData} from './utils.js';
-import {makeVisualizer} from './show-and-hide-popap.js';
+import {makeVisualizer} from './make-visualizer.js';
 import {photos} from './data.js';
 
 const miniatures = document.querySelector('.pictures');
@@ -46,7 +46,7 @@ const fillBigPictureWithData = (data) => {
 
 const bigPictureVisualizer = makeVisualizer(bigPicture);
 
-bigPictureButtonClose.addEventListener('click', () => bigPictureVisualizer.hide());
+bigPictureButtonClose.addEventListener('click', bigPictureVisualizer.hide);
 
 miniatures.addEventListener('click', (evt) => {
   if (evt.target.matches('.picture__img')) {
