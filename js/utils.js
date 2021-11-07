@@ -1,3 +1,4 @@
+
 const getRandomNumber = (min, max) => {
   min = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   max = Math.floor(Math.max(Math.abs(min),Math.abs(max)));
@@ -10,6 +11,5 @@ const getRandomNumberExcept = (min, max, canceledNum) => {
 };
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const findMiniatureData = (miniatures, src) => miniatures.find((item) => src.endsWith(item.url));
-
 
 export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData};
