@@ -1,7 +1,7 @@
-import {ERRORS, checkStrFitsMaxLength} from './utils.js';
+import {checkStrFitsMaxLength} from './utils.js';
 import {photoEditForm} from './form.js';
+import {MAX_COMMENT_LENGTH, ERRORS} from './constants.js';
 
-const MAX_COMMENT_LENGTH = 140;
 const commentField = photoEditForm.querySelector('.text__description');
 
 commentField.addEventListener('input', () => {

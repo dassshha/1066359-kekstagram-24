@@ -1,8 +1,8 @@
-import {ERRORS} from './utils.js';
+import {ERRORS} from './constants.js';
 import {photoEditForm} from './form.js';
+import {MAX_HASHTAGS_COUNT} from './constants.js';
 
 
-const MAX_HASHTAGS_COUNT = 5;
 const hashtagField = photoEditForm.querySelector('.text__hashtags');
 
 const checkIfHashtagsFitMaxCount = (hashtags) => hashtags.length <= MAX_HASHTAGS_COUNT;
