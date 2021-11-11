@@ -9,8 +9,8 @@ const bigPictureButtonClose = bigPicture.querySelector('.cancel');
 const commentsCount = bigPicture.querySelector('.comments-count');
 const commentsLoaderButton = bigPicture.querySelector('.comments-loader');
 const commentTemplate = bigPicture.querySelector('.social__comment');
-const commentsList = bigPicture.querySelector('.social__comments');
-const comments = commentsList.children;
+const commentsContainer = bigPicture.querySelector('.social__comments');
+const comments = commentsContainer.children;
 const commentsRange = bigPicture.querySelector('.social__comment-count');
 let loadedCommentsCount = COMMENTS_AT_ONCE_LOAD_COUNT;
 
@@ -23,7 +23,7 @@ const fillCommentWithData = (data, commentsFragment) => {
   text.textContent = data.message;
   commentsFragment.append(comment);
 };
-const onLoadNewCommentsButtonClicked = () => {
+const onLoadNewCommentsButtonClick = () => {
   const unloadedCommentsCount = comments.length - loadedCommentsCount;
   const stopIndex = unloadedCommentsCount >= COMMENTS_AT_ONCE_LOAD_COUNT ? loadedCommentsCount + COMMENTS_AT_ONCE_LOAD_COUNT : loadedCommentsCount + unloadedCommentsCount;
   for (let i = loadedCommentsCount; i < stopIndex; i++) {
@@ -40,12 +40,12 @@ const loadFirstComments = () => {
 const fillCommentsWithData = (data) => {
   const commentsFragment = document.createDocumentFragment();
   data.forEach((comment) => fillCommentWithData(comment, commentsFragment));
-  commentsList.appendChild(commentsFragment);
+  commentsContainer.appendChild(commentsFragment);
 };
 
 const clearComments = () => {
-  while (commentsList.firstChild) {
-    commentsList.removeChild(commentsList.firstChild);
+  while (commentsContainer.firstChild) {
+    commentsContainer.removeChild(commentsContainer.firstChild);
   }
 };
 
@@ -60,7 +60,10 @@ const fillBigPictureWithData = (data) => {
   description.textContent = data.description;
   fillCommentsWithData(data.comments);
 };
-
+const updateCommentsRangeField = () => {
+  loadedCommentsCount = comments.length >= COMMENTS_AT_ONCE_LOAD_COUNT ? COMMENTS_AT_ONCE_LOAD_COUNT : comments.length;
+  commentsRange.textContent = `${loadedCommentsCount} из ${comments.length} комментариев`;
+};
 const bigPictureVisualizer = makeVisualizer(bigPicture);
 
 bigPictureButtonClose.addEventListener('click', bigPictureVisualizer.hide);
@@ -71,7 +74,8 @@ miniatures.addEventListener('click', (evt) => {
     const miniatureData = findMiniatureData(photos, evt.target.src);
     fillBigPictureWithData(miniatureData);
     loadFirstComments();
+    updateCommentsRangeField();
   }
 });
 
-commentsLoaderButton.addEventListener('click', onLoadNewCommentsButtonClicked);
+commentsLoaderButton.addEventListener('click', onLoadNewCommentsButtonClick);
