@@ -1,6 +1,6 @@
 const COMMENTS_COUNT = {
   'min': 1,
-  'max': 5,
+  'max': 20,
 };
 const PHOTO_INDEX_MAX_COUNT = 25;
 const NAMES = [
