@@ -11,5 +11,7 @@ const getRandomNumberExcept = (min, max, canceledNum) => {
 };
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const findMiniatureData = (miniatures, src) => miniatures.find((item) => src.endsWith(item.url));
+const takeNumberFromScaleFieldString = (scaleField) => Number(scaleField.slice(0,scaleField.indexOf('%')));
+const takeEffectFromString = (str) => str.slice(str.indexOf('-'));
 
-export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData};
+export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData, takeNumberFromScaleFieldString, takeEffectFromString};

@@ -7,5 +7,9 @@ const ERRORS = {
   CORRECT_TITLE_ERROR: 'Неправильный формат хэш-тега!',
   MAX_LENGTH_ERROR: 'Длина комментария не может составлять больше 140 символов!',
 };
-
-export {MAX_COMMENT_LENGTH, MAX_HASHTAGS_COUNT, ERRORS, COMMENTS_AT_ONCE_LOAD_COUNT};
+const SCALE_VALUE = {
+  MIN: 25,
+  MAX: 100,
+  STEP: 25,
+};
+export {MAX_COMMENT_LENGTH, MAX_HASHTAGS_COUNT, ERRORS, COMMENTS_AT_ONCE_LOAD_COUNT, SCALE_VALUE};
