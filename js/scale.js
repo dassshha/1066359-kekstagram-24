@@ -1,5 +1,4 @@
 import {SCALE_VALUE} from './constants.js';
-import {takeNumberFromScaleFieldString} from './utils.js';
 
 const scaleSmallerButton = document.querySelector('.scale__control--smaller');
 const scaleBiggerButton = document.querySelector('.scale__control--bigger');
@@ -24,13 +23,13 @@ const incrementScaleValue = (value) => {
 };
 
 scaleSmallerButton.addEventListener('click', () => {
-  let scaleFieldValue = takeNumberFromScaleFieldString(scaleField.value);
+  let scaleFieldValue = parseInt(scaleField.value, 10);
   scaleFieldValue = decrementScaleValue(scaleFieldValue);
   img.style.transform = `scale(${(scaleFieldValue/100).toFixed(2)})`;
 });
 
 scaleBiggerButton.addEventListener('click', () => {
-  let scaleFieldValue = takeNumberFromScaleFieldString(scaleField.value);
+  let scaleFieldValue = parseInt(scaleField.value, 10);
   scaleFieldValue = incrementScaleValue(scaleFieldValue);
   img.style.transform = `scale(${(scaleFieldValue/100).toFixed(2)})`;
 });
