@@ -9,7 +9,7 @@ const img = document.querySelector('.img-upload__preview');
 
 const formVisualizer = makeVisualizer(photoEditForm);
 
-const updateInitialValues = () => {
+const setInitialValues = () => {
   scaleField.value = '100%';
   img.style.transform = 'scale(1)';
   img.className = 'img-upload__preview';
@@ -18,7 +18,7 @@ const updateInitialValues = () => {
 };
 
 fileLoadButton.addEventListener('change', () => {
-  updateInitialValues();
+  setInitialValues();
   formVisualizer.show();
 });
 
