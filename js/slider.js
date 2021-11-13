@@ -1,51 +1,45 @@
 import {effect} from './effects.js';
+import {formatToFloat} from './utils.js';
+import {CHROME_EFFECT, SEPIA_EFFECT, PHOBOS_EFFECT, MARVIN_EFFECT, HEAT_EFFECT} from './constants.js';
 
 const slider = document.querySelector('.effect-level__slider');
 const valueField = document.querySelector('.effect-level__value');
 const img = document.querySelector('.img-upload__preview');
 
-valueField.value = 30;
-
-const formatToFloat = (value) => value.toFixed(1);
-const formatFromFloat = (value) => parseFloat(value);
-
-const formatToInt = (value) => value.toFixed(0);
-const formatFromInt = (value) => Number(value);
-
-const changeEffect = (min, max, step, formatToFunc, formatFromFunc) => slider.noUiSlider.updateOptions({
+const changeEffect = (titleEffect) => slider.noUiSlider.updateOptions({
   range: {
-    min: min,
-    max: max,
+    min: titleEffect.MIN,
+    max: titleEffect.MAX,
   },
-  start: max,
-  step: step,
+  start: titleEffect.MAX,
+  step: titleEffect.STEP,
   format : {
-    to: (value) => formatToFunc(value),
-    from: (value) => formatFromFunc(value),
+    to: titleEffect.FORMAT_TO_CB,
+    from: titleEffect.FORMAT_FROM_CB,
   },
 });
 const changeChromeEffect = () => {
-  changeEffect(0, 1, 0.1, formatToFloat, formatFromFloat);
+  changeEffect(CHROME_EFFECT);
   slider.classList.remove('hidden');
 };
 
 const changeSepiaEffect = () => {
-  changeEffect(0, 1, 0.1 , formatToFloat, formatFromFloat);
+  changeEffect(SEPIA_EFFECT);
   slider.classList.remove('hidden');
 };
 
 const changeMarvinEffect = () => {
-  changeEffect(0, 100, 1, formatToInt, formatFromInt);
+  changeEffect(MARVIN_EFFECT);
   slider.classList.remove('hidden');
 };
 
 const changePhobosEffect = () => {
-  changeEffect(0, 3, 0.1, formatToFloat, formatFromFloat);
+  changeEffect(PHOBOS_EFFECT);
   slider.classList.remove('hidden');
 };
 
 const changeHeatEffect = () => {
-  changeEffect(1, 3, 0.1, formatToFloat, formatFromFloat);
+  changeEffect(HEAT_EFFECT);
   slider.classList.remove('hidden');
 };
 
@@ -63,30 +57,26 @@ noUiSlider.create(slider, {
   step: 1,
   connect: 'lower',
   format: {
-    to: function (value) {
-      return value.toFixed(1);
-    },
-    from: function (value) {
-      return parseFloat(value);
-    },
+    to: formatToFloat,
+    from: parseFloat,
   },
 });
 
 slider.noUiSlider.on('update', (values, handle) => {
   valueField.value = values[handle];
-  if (effect === '-chrome') {
+  if (effect === CHROME_EFFECT.TITLE) {
     img.style.filter = `grayscale(${values[handle]})`;
   }
-  if (effect === '-heat') {
+  if (effect === HEAT_EFFECT.TITLE) {
     img.style.filter = `brightness(${values[handle]})`;
   }
-  if (effect === '-marvin') {
+  if (effect === MARVIN_EFFECT.TITLE) {
     img.style.filter = `invert(${values[handle]}%)`;
   }
-  if (effect === '-phobos') {
+  if (effect === PHOBOS_EFFECT.TITLE) {
     img.style.filter = `blur(${values[handle]}px)`;
   }
-  if (effect === '-sepia') {
+  if (effect === SEPIA_EFFECT.TITLE) {
     img.style.filter = `sepia(${values[handle]})`;
   }
 });

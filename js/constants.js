@@ -1,3 +1,5 @@
+import {formatToInt, formatToFloat} from './utils.js';
+
 const MAX_COMMENT_LENGTH = 140;
 const MAX_HASHTAGS_COUNT = 5;
 const COMMENTS_AT_ONCE_LOAD_COUNT = 5;
@@ -12,4 +14,44 @@ const SCALE_VALUE = {
   MAX: 100,
   STEP: 25,
 };
-export {MAX_COMMENT_LENGTH, MAX_HASHTAGS_COUNT, ERRORS, COMMENTS_AT_ONCE_LOAD_COUNT, SCALE_VALUE};
+const CHROME_EFFECT = {
+  TITLE: '-chrome',
+  MIN: 0,
+  MAX: 1,
+  STEP: 0.1,
+  FORMAT_TO_CB: formatToFloat,
+  FORMAT_FROM_CB: parseFloat,
+};
+const SEPIA_EFFECT = {
+  TITLE: '-sepia',
+  MIN: 0,
+  MAX: 1,
+  STEP: 0.1,
+  FORMAT_TO_CB: formatToFloat,
+  FORMAT_FROM_CB: parseFloat,
+};
+const MARVIN_EFFECT = {
+  TITLE: '-marvin',
+  MIN: 0,
+  MAX: 100,
+  STEP: 1,
+  FORMAT_TO_CB: formatToInt,
+  FORMAT_FROM_CB: Number,
+};
+const PHOBOS_EFFECT = {
+  TITLE: '-phobos',
+  MIN: 0,
+  MAX: 3,
+  STEP: 0.1,
+  FORMAT_TO_CB: formatToFloat,
+  FORMAT_FROM_CB: parseFloat,
+};
+const HEAT_EFFECT = {
+  TITLE: '-heat',
+  MIN: 1,
+  MAX: 3,
+  STEP: 0.1,
+  FORMAT_TO_CB: formatToFloat,
+  FORMAT_FROM_CB: parseFloat,
+};
+export {MAX_COMMENT_LENGTH, MAX_HASHTAGS_COUNT, ERRORS, COMMENTS_AT_ONCE_LOAD_COUNT, SCALE_VALUE, CHROME_EFFECT, HEAT_EFFECT, MARVIN_EFFECT, PHOBOS_EFFECT, SEPIA_EFFECT};
