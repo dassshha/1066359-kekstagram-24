@@ -24,6 +24,6 @@ const exitSuccessMessageButton = successMessage.querySelector('.success__button'
 const exitErrorMessageButton = errorMessage.querySelector('.error__button');
 const successMessageVisualizer = makeVisualizer(successMessage);
 const errorMessageVisualizer = makeVisualizer(errorMessage);
-exitSuccessMessageButton.addEventListener('click', () => successMessageVisualizer.hide('onBackgroundClick'));
-exitErrorMessageButton.addEventListener('click', () => errorMessageVisualizer.hide('onBackgroundClick'));
+exitSuccessMessageButton.addEventListener('click', () => successMessageVisualizer.hide());
+exitErrorMessageButton.addEventListener('click', () => errorMessageVisualizer.hide());
 export {successMessageVisualizer, errorMessageVisualizer};

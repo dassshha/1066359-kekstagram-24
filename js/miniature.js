@@ -1,4 +1,4 @@
-import {sortDown, generateRandomUniqueNumber} from './filters.js';
+import {sortCommentsDesc, generateRandomUniqueNumber} from './utils.js';
 import {PICTURE_ID, RANDOM_PICTURES_COUNT} from './constants.js';
 
 const miniatureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -31,7 +31,7 @@ const createMiniatures = (pictures) => {
 const createDiscussedMiniatures = (pictures) => {
   const discussedPictures = pictures
     .slice()
-    .sort((a, b) => sortDown(a, b));
+    .sort(sortCommentsDesc);
   createMiniatures(discussedPictures);
 };
 

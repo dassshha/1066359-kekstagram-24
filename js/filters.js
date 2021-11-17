@@ -1,34 +1,28 @@
-import {getRandomNumber} from './utils.js';
-
 const filters = document.querySelector('.img-filters');
 const defaultFilter = filters.querySelector('#filter-default');
 const randomFilter = filters.querySelector('#filter-random');
 const discussedFilter = filters.querySelector('#filter-discussed');
 
 
-const sortDown = (a, b) => b.comments.length - a.comments.length;
-
-const generateRandomUniqueNumber = (min, max) => {
-  const previousValues = [];
-
-  return  () =>  {
-    let currentValue = getRandomNumber(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomNumber(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-};
-
-
 const setFiltersClick = (discussedFilterCb, randomFilterCb, defaultFilterCb) => {
-  discussedFilter.addEventListener('click', () => discussedFilterCb());
-  randomFilter.addEventListener('click', () => randomFilterCb());
-  defaultFilter.addEventListener('click', () => defaultFilterCb());
+  discussedFilter.addEventListener('click', () => {
+    discussedFilter.classList.add('img-filters__button--active');
+    randomFilter.classList.remove('img-filters__button--active');
+    defaultFilter.classList.remove('img-filters__button--active');
+    discussedFilterCb();
+  });
+  randomFilter.addEventListener('click', () => {
+    discussedFilter.classList.remove('img-filters__button--active');
+    randomFilter.classList.add('img-filters__button--active');
+    defaultFilter.classList.remove('img-filters__button--active');
+    randomFilterCb();
+  });
+  defaultFilter.addEventListener('click', () => {
+    discussedFilter.classList.remove('img-filters__button--active');
+    randomFilter.classList.remove('img-filters__button--active');
+    defaultFilter.classList.add('img-filters__button--active');
+    defaultFilterCb();
+  });
 };
 
-export  {setFiltersClick, sortDown, generateRandomUniqueNumber};
+export  {setFiltersClick};

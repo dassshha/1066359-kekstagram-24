@@ -36,4 +36,22 @@ const showResponseFromServerError = (message) => {
   }, 5000);
 };
 
-export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData, takeEffectFromString, formatToFloat, formatToInt, showResponseFromServerError};
+const sortCommentsDesc = (a, b) => b.comments.length - a.comments.length;
+
+const generateRandomUniqueNumber = (min, max) => {
+  const previousValues = [];
+
+  return  () =>  {
+    let currentValue = getRandomNumber(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      return null;
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomNumber(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+};
+
+export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData, takeEffectFromString, formatToFloat, formatToInt, showResponseFromServerError, sortCommentsDesc, generateRandomUniqueNumber};
