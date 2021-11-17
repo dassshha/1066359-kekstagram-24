@@ -1,6 +1,5 @@
 import {makeVisualizer} from './make-visualizer.js';
 import {sendData} from './api.js';
-import {showResponseFromServerError} from './utils.js';
 import {errorMessageVisualizer, successMessageVisualizer} from './success-error-message.js';
 
 const fileLoadButton = document.querySelector('#upload-file');
@@ -26,10 +25,10 @@ const setFormSubmit = (onSuccess, onError) => {
     );
   });
 };
+
 setFormSubmit(()=> {
   formVisualizer.hide();
-  successMessageVisualizer.show('onBackgroundClick');
-  }, () => {
+  successMessageVisualizer.show('onBackgroundClick');}, () => {
   formVisualizer.hide();
   errorMessageVisualizer.show('onBackgroundClick');
 });
