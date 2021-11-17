@@ -1,28 +1,37 @@
 import {makeVisualizer} from './make-visualizer.js';
-import {slider} from './slider.js';
+import {sendData} from './api.js';
+import {errorMessageVisualizer, successMessageVisualizer} from './success-error-message.js';
 
 const fileLoadButton = document.querySelector('#upload-file');
 const photoEditForm = document.querySelector('.img-upload__overlay');
+const photoSubmitForm = document.querySelector('.img-upload__form');
 const closeFormButton = photoEditForm.querySelector('#upload-cancel');
-const scaleField = document.querySelector('.scale__control--value');
-const img = document.querySelector('.img-upload__preview');
 
 const formVisualizer = makeVisualizer(photoEditForm);
 
-const setInitialValues = () => {
-  scaleField.value = '100%';
-  img.style.transform = 'scale(1)';
-  img.className = 'img-upload__preview';
-  slider.classList.add('hidden');
-  img.style.filter = 'none';
-};
 
-fileLoadButton.addEventListener('change', () => {
-  setInitialValues();
-  formVisualizer.show();
-});
+fileLoadButton.addEventListener('change', formVisualizer.show);
 
 closeFormButton.addEventListener('click', formVisualizer.hide);
+
+const setFormSubmit = (onSuccess, onError) => {
+  photoSubmitForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    sendData(
+      () => onSuccess(),
+      () => onError(),
+      new FormData(evt.target),
+    );
+  });
+};
+
+setFormSubmit(()=> {
+  formVisualizer.hide();
+  successMessageVisualizer.show('onBackgroundClick');}, () => {
+  formVisualizer.hide();
+  errorMessageVisualizer.show('onBackgroundClick');
+});
 
 export {photoEditForm};
 

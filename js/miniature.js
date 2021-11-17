@@ -1,5 +1,3 @@
-import {photos} from './data.js';
-
 const miniatureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const createMiniature = (photo, miniaturesFragment) => {
@@ -13,15 +11,14 @@ const createMiniature = (photo, miniaturesFragment) => {
   miniaturesFragment.append(miniature);
 };
 
-const createMiniatures = (pictures, container) => {
+const createMiniatures = (pictures) => {
+  const miniaturesContainer = document.querySelector('.pictures');
   const miniaturesFragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
     createMiniature(picture, miniaturesFragment);
   });
-  container.appendChild(miniaturesFragment);
+  miniaturesContainer.appendChild(miniaturesFragment);
 };
 
-const miniaturesContainer = document.querySelector('.pictures');
-createMiniatures(photos, miniaturesContainer);
-
+export {createMiniatures};
 

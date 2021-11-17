@@ -1416,3 +1416,7 @@ main {
 .hidden {
   display: none;
 }
+
+.warning {
+  border: 2px solid tomato;
+}

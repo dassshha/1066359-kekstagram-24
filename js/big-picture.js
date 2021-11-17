@@ -1,9 +1,7 @@
 import {findMiniatureData} from './utils.js';
 import {makeVisualizer} from './make-visualizer.js';
-import {photos} from './data.js';
 import {COMMENTS_AT_ONCE_LOAD_COUNT} from './constants.js';
 
-const miniatures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureButtonClose = bigPicture.querySelector('.cancel');
 const commentsCount = bigPicture.querySelector('.comments-count');
@@ -68,14 +66,16 @@ const bigPictureVisualizer = makeVisualizer(bigPicture);
 
 bigPictureButtonClose.addEventListener('click', bigPictureVisualizer.hide);
 
-miniatures.addEventListener('click', (evt) => {
+const onMiniatureClick = (pictures, evt) => {
   if (evt.target.matches('.picture__img')) {
     bigPictureVisualizer.show();
-    const miniatureData = findMiniatureData(photos, evt.target.src);
+    const miniatureData = findMiniatureData(pictures, evt.target.src);
     fillBigPictureWithData(miniatureData);
     loadFirstComments();
     updateCommentsRangeField();
   }
-});
+};
 
 commentsLoaderButton.addEventListener('click', onLoadNewCommentsButtonClick);
+
+export {onMiniatureClick};
