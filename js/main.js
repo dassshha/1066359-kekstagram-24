@@ -10,7 +10,7 @@ import {getData} from './api.js';
 import {onMiniatureClick} from './big-picture.js';
 import {showResponseFromServerError} from './utils.js';
 import {setFiltersClick} from './filters.js';
-import {debounce} from './utils/debounce.js';
+import {throttle} from './utils/throttle.js';
 import {RERENDER_DELAY} from './constants.js';
 
 const miniatures = document.querySelector('.pictures');
@@ -22,9 +22,9 @@ getData(
     miniatures.addEventListener('click', (evt) => onMiniatureClick(pictures, evt));
     filters.classList.remove('img-filters--inactive');
     setFiltersClick(
-      debounce(() => createDiscussedMiniatures(pictures), RERENDER_DELAY),
-      debounce(() => createRandomMiniatures(pictures), RERENDER_DELAY),
-      debounce(() => createMiniatures(pictures), RERENDER_DELAY),
+      throttle(() => createDiscussedMiniatures(pictures), RERENDER_DELAY),
+      throttle(() => createRandomMiniatures(pictures), RERENDER_DELAY),
+      throttle(() => createMiniatures(pictures), RERENDER_DELAY),
     );
   },
   () => showResponseFromServerError('Произошла ошибка при загрузке данных. Обновите страницу.'),
