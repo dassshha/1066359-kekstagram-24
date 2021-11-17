@@ -1,4 +1,3 @@
-
 const getRandomNumber = (min, max) => {
   min = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   max = Math.floor(Math.max(Math.abs(min),Math.abs(max)));
@@ -16,4 +15,25 @@ const formatToFloat = (value) => value.toFixed(1);
 
 const formatToInt = (value) => value.toFixed(0);
 
-export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData, takeEffectFromString, formatToFloat, formatToInt};
+const showResponseFromServerError = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '20px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'tomato';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, 5000);
+};
+
+export {getRandomNumber, getRandomNumberExcept, checkStrFitsMaxLength, isEscapeKey, findMiniatureData, takeEffectFromString, formatToFloat, formatToInt, showResponseFromServerError};
