@@ -8,7 +8,8 @@ const hashtagField = photoEditForm.querySelector('.text__hashtags');
 const checkIfHashtagsFitMaxCount = (hashtags) => hashtags.length <= MAX_HASHTAGS_COUNT;
 
 const checkTwoSameHashtags = (hashtags) => {
-  const hashtagsSet = new Set(hashtags);
+  const upperHashtags = hashtags.map((hashtag) => hashtag.toUpperCase());
+  const hashtagsSet = new Set(upperHashtags);
   return hashtagsSet.size === hashtags.length;
 };
 
