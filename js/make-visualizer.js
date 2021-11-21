@@ -7,6 +7,7 @@ const img = document.querySelector('.img-upload__preview');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 const uploadField = document.querySelector('.img-upload__input');
+const effectNone = document.querySelector('#effect-none');
 
 const setInitialValues = () => {
   scaleField.value = '100%';
@@ -17,6 +18,7 @@ const setInitialValues = () => {
   hashtagField.value = '';
   commentField.value = '';
   uploadField.value = '';
+  effectNone.checked = true;
 };
 const makeVisualizer = (popup) => {
   const onEscKeydown = (evt) => {
