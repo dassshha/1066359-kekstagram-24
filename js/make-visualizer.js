@@ -26,7 +26,7 @@ const makeVisualizer = (popup) => {
     }
   };
   const onBackgroundClick = (evt) => {
-    if (evt.target.matches('.success')) {
+    if (evt.target.matches('.success') || evt.target.matches('.error')) {
       hidePopup();
     }
   };

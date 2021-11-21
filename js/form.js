@@ -26,12 +26,13 @@ const setFormSubmit = (onSuccess, onError) => {
   });
 };
 
-setFormSubmit(()=> {
-  formVisualizer.hide();
-  successMessageVisualizer.show('onBackgroundClick');}, () => {
-  formVisualizer.hide();
-  errorMessageVisualizer.show('onBackgroundClick');
-});
+setFormSubmit(
+  ()=> {
+    formVisualizer.hide();
+    successMessageVisualizer.show('onBackgroundClick');},
+  () => {
+    formVisualizer.hide();
+    errorMessageVisualizer.show('onBackgroundClick');});
 
 export {photoEditForm};
 
