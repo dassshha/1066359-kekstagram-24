@@ -1,9 +1,9 @@
 import {isEscapeKey} from './utils.js';
-import {slider} from './slider.js';
+import {sliderContainer} from './slider.js';
 
 const body = document.querySelector('body');
 const scaleField = document.querySelector('.scale__control--value');
-const img = document.querySelector('.img-upload__preview');
+const img = document.querySelector('.img-upload__preview > img');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 const uploadField = document.querySelector('.img-upload__input');
@@ -13,7 +13,7 @@ const setInitialValues = () => {
   scaleField.value = '100%';
   img.style.transform = 'scale(1)';
   img.className = 'img-upload__preview';
-  slider.classList.add('hidden');
+  sliderContainer.classList.add('hidden');
   img.style.filter = 'none';
   hashtagField.value = '';
   commentField.value = '';

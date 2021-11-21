@@ -84,6 +84,6 @@ slider.noUiSlider.on('update', (values, handle) => {
 
 sliderContainer.classList.add('hidden');
 
-export {slider, changeChromeEffect, changeHeatEffect, changeMarvinEffect, changePhobosEffect, changeSepiaEffect, changeNoneEffect};
+export {sliderContainer, changeChromeEffect, changeHeatEffect, changeMarvinEffect, changePhobosEffect, changeSepiaEffect, changeNoneEffect};
 
 
