@@ -3,8 +3,9 @@ import {formatToFloat} from './utils.js';
 import {CHROME_EFFECT, SEPIA_EFFECT, PHOBOS_EFFECT, MARVIN_EFFECT, HEAT_EFFECT} from './constants.js';
 
 const slider = document.querySelector('.effect-level__slider');
+const sliderContainer = document.querySelector('.img-upload__effect-level');
 const valueField = document.querySelector('.effect-level__value');
-const img = document.querySelector('.img-upload__preview');
+const img = document.querySelector('.img-upload__preview > img');
 
 const changeEffect = (titleEffect) => slider.noUiSlider.updateOptions({
   range: {
@@ -20,31 +21,31 @@ const changeEffect = (titleEffect) => slider.noUiSlider.updateOptions({
 });
 const changeChromeEffect = () => {
   changeEffect(CHROME_EFFECT);
-  slider.classList.remove('hidden');
+  sliderContainer.classList.remove('hidden');
 };
 
 const changeSepiaEffect = () => {
   changeEffect(SEPIA_EFFECT);
-  slider.classList.remove('hidden');
+  sliderContainer.classList.remove('hidden');
 };
 
 const changeMarvinEffect = () => {
   changeEffect(MARVIN_EFFECT);
-  slider.classList.remove('hidden');
+  sliderContainer.classList.remove('hidden');
 };
 
 const changePhobosEffect = () => {
   changeEffect(PHOBOS_EFFECT);
-  slider.classList.remove('hidden');
+  sliderContainer.classList.remove('hidden');
 };
 
 const changeHeatEffect = () => {
   changeEffect(HEAT_EFFECT);
-  slider.classList.remove('hidden');
+  sliderContainer.classList.remove('hidden');
 };
 
 const changeNoneEffect = () => {
-  slider.classList.add('hidden');
+  sliderContainer.classList.add('hidden');
   img.style.filter = 'none';
 };
 
@@ -81,7 +82,7 @@ slider.noUiSlider.on('update', (values, handle) => {
   }
 });
 
-slider.classList.add('hidden');
+sliderContainer.classList.add('hidden');
 
 export {slider, changeChromeEffect, changeHeatEffect, changeMarvinEffect, changePhobosEffect, changeSepiaEffect, changeNoneEffect};
 

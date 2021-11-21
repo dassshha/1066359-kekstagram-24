@@ -16,7 +16,7 @@ let effect = '-none';
 effectsList.addEventListener('change', (evt) => {
   if (evt.target.matches('.effects__radio')) {
     effect = takeEffectFromString(evt.target.id);
-    img.className = `img-upload__preview effects__preview-${effect}`;
+    img.className = `effects__preview-${effect}`;
     if (effect === '-chrome') {
       changeChromeEffect();
     } else if (effect === '-heat') {
