@@ -21,6 +21,13 @@ const fillCommentWithData = (data, commentsFragment) => {
   text.textContent = data.message;
   commentsFragment.append(comment);
 };
+const showLoaderButton = () => {
+  if (loadedCommentsCount === comments.length) {
+    commentsLoaderButton.classList.add('hidden');
+  }else {
+    commentsLoaderButton.classList.remove('hidden');
+  }
+};
 const onLoadNewCommentsButtonClick = () => {
   const unloadedCommentsCount = comments.length - loadedCommentsCount;
   const stopIndex = unloadedCommentsCount >= COMMENTS_AT_ONCE_LOAD_COUNT ? loadedCommentsCount + COMMENTS_AT_ONCE_LOAD_COUNT : loadedCommentsCount + unloadedCommentsCount;
@@ -29,6 +36,7 @@ const onLoadNewCommentsButtonClick = () => {
   }
   loadedCommentsCount = stopIndex;
   commentsRange.textContent = `${loadedCommentsCount} из ${comments.length} комментариев`;
+  showLoaderButton();
 };
 const loadFirstComments = () => {
   for (let i = COMMENTS_AT_ONCE_LOAD_COUNT; i < comments.length; i++) {
@@ -58,9 +66,11 @@ const fillBigPictureWithData = (data) => {
   description.textContent = data.description;
   fillCommentsWithData(data.comments);
 };
+
 const updateCommentsRangeField = () => {
   loadedCommentsCount = comments.length >= COMMENTS_AT_ONCE_LOAD_COUNT ? COMMENTS_AT_ONCE_LOAD_COUNT : comments.length;
   commentsRange.textContent = `${loadedCommentsCount} из ${comments.length} комментариев`;
+  showLoaderButton();
 };
 const bigPictureVisualizer = makeVisualizer(bigPicture);
 
