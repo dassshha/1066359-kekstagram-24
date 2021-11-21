@@ -3,7 +3,7 @@ import {SCALE_VALUE} from './constants.js';
 const scaleSmallerButton = document.querySelector('.scale__control--smaller');
 const scaleBiggerButton = document.querySelector('.scale__control--bigger');
 const scaleField = document.querySelector('.scale__control--value');
-const img = document.querySelector('.img-upload__preview');
+const img = document.querySelector('.img-upload__preview > img');
 
 
 const decrementScaleValue = (value) => {

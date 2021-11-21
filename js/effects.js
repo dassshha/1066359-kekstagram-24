@@ -9,7 +9,7 @@ import {
 } from './slider.js';
 
 const effectsList = document.querySelector('.effects__list');
-const img = document.querySelector('.img-upload__preview');
+const img = document.querySelector('.img-upload__preview > img');
 let effect = '-none';
 
 
